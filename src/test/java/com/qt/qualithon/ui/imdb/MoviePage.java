@@ -125,5 +125,18 @@ public class MoviePage extends Page{
         }
         return writers;
     }
+    public String CorrectMaturityRating() {
+    	  List<WebElement> li =  this.testSession.driverWait().until(
+    	            ExpectedConditions.presenceOfAllElementsLocatedBy(
+    	                    By.cssSelector("a[class=\"ipc-link ipc-link--baseAlt ipc-link--inherit-color sc-52284603-1 ifnKcw\"]")));
+    	  return li.get(1).getText();
+    }
+    public String imdbRating() {
+    	return this.testSession.driverWait().until(
+	            ExpectedConditions.presenceOfElementLocated(
+	                By.cssSelector("span[class=\"sc-7ab21ed2-1 jGRxWM\"]")
+	            )
+	        ).getText();
+    }
 
 }
