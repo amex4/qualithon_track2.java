@@ -153,8 +153,13 @@ public class MovieSearchTest {
      **/
     @Test(dataProvider = "popularMovieTitles")
     public void testMovieMetadataOnWebHasCorrectMaturityRating(String title) throws Exception {
-        // NOT IMPLEMENTED
-        throw new Exception("Test Pending");
+         MoviePage movieOnImdbWeb = new WebApp(this.testSession)
+    	            .launch()
+    	            .search(title)
+    	            .firstMovieResult();
+    	 Movie movie = new OMDbAPI().getMovie(title);
+    	 
+    	 assertThat(movieOnImdbWeb.CorrectMaturityRating()).isEqualTo(movie.MaturityRating());  
     }
 
     /**
@@ -166,7 +171,11 @@ public class MovieSearchTest {
      **/
     @Test(dataProvider = "popularMovieTitles")
     public void testMovieMetadataOnWebHasCorrectMovieRatingScore(String title) throws Exception {
-        // NOT IMPLEMENTED
-        throw new Exception("Test Pending");
+      MoviePage movieOnImdbWeb = new WebApp(this.testSession)
+ 	            .launch()
+ 	            .search(title)
+ 	            .firstMovieResult();
+ 	 Movie movie = new OMDbAPI().getMovie(title);
+ 	assertThat(movieOnImdbWeb.imdbRating()).isEqualTo(movie.imdbRating());
     }
 }
